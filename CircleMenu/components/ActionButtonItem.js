@@ -24,7 +24,7 @@ export default class ActionButtonItem extends Component {
     this.radius = (this.props.radius / 2 + this.props.size / 2);
 
     this.animation.addListener(({ value }) => {
-      // this.showLine(value);
+      this.showLine(value);
       this.move(value);
     });
   }
@@ -49,7 +49,7 @@ export default class ActionButtonItem extends Component {
   }
 
   showLine(value) {
-    const percent = value * 100;
+    const percent = value * 99;
     let leftTransformerDegree = '0deg';
     let rightTransformerDegree = '0deg';
     if (percent >= 50) {
@@ -59,9 +59,11 @@ export default class ActionButtonItem extends Component {
       rightTransformerDegree = percent * 3.6 + 'deg';
     }
 
+    const radius = this.props.radius + this.props.size;
+
     let commonStyle = [styles.loader, {
-      width: this.props.radius,
-      height: this.props.radius * 2,
+      width: radius,
+      height: radius * 2,
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
       backgroundColor: this.props.buttonColor,
@@ -69,26 +71,26 @@ export default class ActionButtonItem extends Component {
 
     this.rightPart.setNativeProps({
       style: [styles.loader, commonStyle, {
-        left: -this.props.radius,
+        left: -radius,
         transform: [{
-          translateX: this.props.radius / 2,
+          translateX: radius / 2,
         }, {
           rotate: rightTransformerDegree,
         }, {
-          translateX: -this.props.radius / 2,
+          translateX: -radius / 2,
         }],
       }]
     });
 
     this.leftPart.setNativeProps({
       style: [styles.loader, commonStyle, {
-        left: this.props.radius,
+        left: radius,
         transform: [{
-          translateX: -this.props.radius / 2,
+          translateX: -radius / 2,
         }, {
           rotate: leftTransformerDegree,
         }, {
-          translateX: this.props.radius / 2,
+          translateX: radius / 2,
         }],
       }]
     });
@@ -97,90 +99,112 @@ export default class ActionButtonItem extends Component {
   renderCircle() {
     const radius = this.props.radius + this.props.size;
     return (
-      <View
-        setNativeProps={true}
-        pointerEvents="box-none"
-        style={[styles.circle, {
-          width: radius + this.props.size,
-          height: radius + this.props.size,
-          borderRadius: (radius + this.props.size) / 2,
-          backgroundColor: 'green',
-          transform: [{
-            rotate: this.state.startDeg + 'deg',
-          }],
-        }]}
-      >
-        <View setNativeProps={true} style={[styles.leftWrap, {
-          width: radius,
-          height: radius * 2,
-          left: -this.props.size,
-        }]}>
-          <View
-            setNativeProps={true}
-            ref={(ref) => this.leftPart = ref}
-            style={[styles.loader,{
-              left: radius,
-              width: radius,
-              height: radius * 2,
-              borderTopLeftRadius: 0,
-              borderBottomLeftRadius: 0,
-              backgroundColor: this.state.buttonColor,
-            }]}
-          />
-        </View>
-        <View setNativeProps={true} style={[styles.leftWrap, {
-          left: radius - this.props.size,
-          width: radius,
-          height: radius * 2,
-        }]}>
-          <View
-            setNativeProps={true}
-            ref={(ref) => this.rightPart = ref}
-            style={[styles.loader, {
-              left: -radius,
-              width: radius,
-              height: radius * 2,
-              borderTopRightRadius: 0,
-              borderBottomRightRadius: 0,
-              backgroundColor: this.state.buttonColor,
-            }]}
-          />
-        </View>
-        <View style={[styles.innerCircle, {
-          borderRadius: radius,
-          // backgroundColor: this.props.bgColor,
-          zIndex: 1,
-          ...Platform.select({
-            ios: {
-              width: radius - this.props.size,
-              height: radius - this.props.size,
-            },
-            android: {
-              width: radius * 2 - this.props.size,
-              height: radius * 2 - this.props.size,
-              // borderWidth: this.props.size,
-              // borderColor: 'transparent',
-            },
-          }),
-        }]}>
+      <View style={{
+        display: this.state.isActive ? 'flex' : 'none',
+        position: 'absolute',
+        top: -this.props.radius - this.props.size / 2,
+        width: radius * 2,
+        height: radius * 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <View
+          setNativeProps={true}
+          pointerEvents="box-none"
+          style={[styles.circle, {
+            width: radius + this.props.size,
+            height: radius + this.props.size,
+            borderRadius: (radius + this.props.size) / 2,
+            transform: [{
+              rotate: this.state.startDeg + 'deg',
+            }],
+            backgroundColor: 'transparent',
+          }]}
+        >
+          <View setNativeProps={true} style={[styles.leftWrap, {
+            width: radius,
+            height: radius * 2,
+            left: -this.props.size,
+          }]}>
+            <View
+              setNativeProps={true}
+              ref={(ref) => this.leftPart = ref}
+              style={[styles.loader,{
+                left: radius,
+                width: radius,
+                height: radius * 2,
+                borderTopLeftRadius: 0,
+                borderBottomLeftRadius: 0,
+                backgroundColor: this.props.buttonColor,
+              }]}
+            />
+          </View>
+          <View setNativeProps={true} style={[styles.leftWrap, {
+            left: radius - this.props.size,
+            width: radius,
+            height: radius * 2,
+          }]}>
+            <View
+              setNativeProps={true}
+              ref={(ref) => this.rightPart = ref}
+              style={[styles.loader, {
+                left: -radius,
+                width: radius,
+                height: radius * 2,
+                borderTopRightRadius: 0,
+                borderBottomRightRadius: 0,
+                backgroundColor: this.props.buttonColor,
+              }]}
+            />
+          </View>
+          <View style={[styles.innerCircle, {
+            borderRadius: radius,
+            backgroundColor: this.props.bgColor,
+            zIndex: 1,
+            ...Platform.select({
+              ios: {
+                width: radius - this.props.size,
+                height: radius - this.props.size,
+              },
+              android: {
+                width: radius * 2,
+                height: radius * 2,
+                borderWidth: radius,
+                borderColor: 'transparent',
+              },
+            }),
+          }]}>
+          </View>
         </View>
       </View>
     );
   }
 
+  startAnimation() {
+    this.setState({
+      isActive: true,
+    });
+    this.wraper.setNativeProps({
+      style: [this.props.style, {
+        zIndex: 100,
+      }],
+    });
+    this.animation.setValue(0);
+    Animated.timing(
+      this.animation,
+      {
+        duration: this.props.duration,
+        toValue: 1,
+      }
+    ).start(() => {
+      this.props.onPress();
+    });
+  }
+
   render() {
     return (
       <View style={this.props.style} ref={(ref) => this.wraper = ref}>
-        {/*<View style={{
-                  position: 'absolute',
-                  top: -(this.props.radius + this.props.size) / 2,
-                  left: -(this.props.radius + this.props.size) / 2,
-                  width: (this.props.radius + this.props.size) * 2,
-                  height: (this.props.radius + this.props.size) * 2,
-                  // backgroundColor: 'green'
-                }}>
-                  {this.renderCircle()}
-                </View>*/}
+        {this.renderCircle()}
         <View style={{
           width: this.props.size,
           height: this.props.size,
@@ -222,25 +246,7 @@ export default class ActionButtonItem extends Component {
           <TouchableOpacity
             style={{flex:1}}
             activeOpacity={this.props.activeOpacity || 0.85}
-            onPress={() => {
-              this.setState({
-                isActive: true,
-              });
-              this.wraper.setNativeProps({
-                style: [this.props.style, {
-                  zIndex: 100,
-                }],
-              });
-              this.props.onPress(this.props.angle, this.props.duration, this.props.buttonColor);
-              this.animation.setValue(0);
-              Animated.timing(
-                this.animation,
-                {
-                  duration: this.props.duration,
-                  toValue: 1,
-                }
-              ).start(this.props.afterPress)}
-            }>
+            onPress={this.startAnimation.bind(this)}>
             <View
               style={[styles.actionButton,{
                   width: this.props.size,
@@ -301,7 +307,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   leftWrap: {
-    // overflow: 'hidden',
+    overflow: 'hidden',
     position: 'absolute',
   },
   rightWrap: {

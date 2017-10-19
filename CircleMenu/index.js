@@ -57,54 +57,7 @@ export default class CircleMenu extends Component {
       isMenuOpen: false,
     };
 
-    this.circleAnimation = new Animated.Value(0);
     this.timeout = null;
-
-    this.circleAnimation.addListener(({ value }) => {
-      const percent = value * 100;
-      let leftTransformerDegree = '0deg';
-      let rightTransformerDegree = '0deg';
-      if (percent >= 50) {
-        rightTransformerDegree = '180deg';
-        leftTransformerDegree = (percent - 50) * 3.6 + 'deg';
-      } else {
-        rightTransformerDegree = percent * 3.6 + 'deg';
-      }
-
-      let commonStyle = [styles.loader, {
-        width: this.props.radius,
-        height: this.props.radius * 2,
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
-        backgroundColor: this.state.circleColor,
-      }];
-
-      this.rightPart.setNativeProps({
-        style: [styles.loader, commonStyle, {
-          left: -this.props.radius,
-          transform: [{
-            translateX: this.props.radius / 2,
-          }, {
-            rotate: rightTransformerDegree,
-          }, {
-            translateX: -this.props.radius / 2,
-          }],
-        }]
-      });
-
-      this.leftPart.setNativeProps({
-        style: [styles.loader, commonStyle, {
-          left: this.props.radius,
-          transform: [{
-            translateX: -this.props.radius / 2,
-          }, {
-            rotate: leftTransformerDegree,
-          }, {
-            translateX: this.props.radius / 2,
-          }],
-        }]
-      });
-    });
   }
 
   componentWillUnmount() {
@@ -230,22 +183,6 @@ export default class CircleMenu extends Component {
     );
   }
 
-  moveFrom(angle, duration, color) {
-    this.setState({
-      circleColor: color,
-      startDeg: (angle * 180 / Math.PI) + 90,
-    });
-    Animated.timing(
-      this.circleAnimation,
-      {
-        duration: duration - 100,
-        toValue: 1,
-      }
-    ).start(() => {
-      this.circleAnimation.setValue(0)
-    });   
-  }
-
   renderActions() {
     if (!this.state.active) return null;
     
@@ -267,9 +204,9 @@ export default class CircleMenu extends Component {
             radius={this.props.radius - this.props.itemSize}
             angle={btnAngle}
             buttonColor={item.color}
-            afterPress={() => this.closeMenu()}
-            onPress={this.moveFrom.bind(this)}
+            onPress={() => this.closeMenu()}
             style={[styles.actionContainer, { position: 'absolute' }]}
+            bgColor={this.props.bgColor}
           >
             <Icon name={item.name} color="white" size={20} />
           </ActionButtonItem>
@@ -280,94 +217,10 @@ export default class CircleMenu extends Component {
 
   render() {
     return (
-      <View
-        setNativeProps={true}
-        pointerEvents="box-none"
-        style={[styles.circle, {
-          width: this.props.radius + this.props.itemSize,
-          height: this.props.radius + this.props.itemSize,
-          borderRadius: (this.props.radius + this.props.itemSize) / 2,
-          transform: [{
-            rotate: this.state.startDeg + 'deg',
-          }],
-        }]}
-      >
-        <View setNativeProps={true} style={[styles.leftWrap, {
-          width: this.props.radius,
-          height: this.props.radius * 2,
-          left: -this.props.itemSize,
-        }]}>
-          <View
-            setNativeProps={true}
-            ref={(ref) => this.leftPart = ref}
-            style={[styles.loader,{
-              left: this.props.radius,
-              width: this.props.radius,
-              height: this.props.radius * 2,
-              borderTopLeftRadius: 0,
-              borderBottomLeftRadius: 0,
-              backgroundColor: this.state.circleColor,
-            }]}
-          />
-        </View>
-        <View setNativeProps={true} style={[styles.leftWrap, {
-          left: this.props.radius - this.props.itemSize,
-          width: this.props.radius,
-          height: this.props.radius * 2,
-        }]}>
-          <View
-            setNativeProps={true}
-            ref={(ref) => this.rightPart = ref}
-            style={[styles.loader, {
-              left: -this.props.radius,
-              width: this.props.radius,
-              height: this.props.radius * 2,
-              borderTopRightRadius: 0,
-              borderBottomRightRadius: 0,
-              backgroundColor: this.state.circleColor,
-            }]}
-          />
-        </View>
-        <View style={[styles.innerCircle, {
-          borderRadius: this.props.radius,
-          backgroundColor: this.props.bgColor,
-          zIndex: 1,
-          ...Platform.select({
-            ios: {
-              width: this.props.radius - this.props.itemSize,
-              height: this.props.radius - this.props.itemSize,
-            },
-            android: {
-              width: this.props.radius * 2 - this.props.itemSize,
-              height: this.props.radius * 2 - this.props.itemSize,
-              // borderWidth: this.props.itemSize,
-              // borderColor: 'transparent',
-            },
-          }),
-        }]}>
-          <View style={[styles.innerCircle, {
-            ...Platform.select({
-            ios: {
-              // width: this.props.radius - this.props.itemSize,
-              // height: this.props.radius - this.props.itemSize,
-            },
-            android: {
-              width: '100%',
-              height: '100%',
-              flex: 1,
-              // borderWidth: this.props.itemSize,
-              // borderColor: 'greeen',
-            },
-          }),
-            transform: [{
-              rotate: -this.state.startDeg + 'deg',
-            }],
-          }]}>
-            {this.renderActions()}
-            <View pointerEvents="box-none" style={styles.actionContainer} >
-              {this.renderButton()}
-            </View>
-          </View>
+      <View>
+        {this.renderActions()}
+        <View pointerEvents="box-none" style={styles.actionContainer} >
+          {this.renderButton()}
         </View>
       </View>
     );
@@ -415,31 +268,6 @@ CircleMenu.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-  circle: {
-    overflow: 'hidden',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#0E1329',
-    position: 'relative',
-  },
-  leftWrap: {
-    overflow: 'hidden',
-    position: 'absolute',
-  },
-  rightWrap: {
-    position: 'absolute',
-  },
-  loader: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    borderRadius: 1000,
-  },
-  innerCircle: {
-    position: 'relative',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   actionContainer: {
     flexDirection: 'column',
     padding: 0,
