@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import { Ionicons as Icon } from '@expo/vector-icons';
 
-import {ActionButtonItem, TouchableIcon } from './components';
+import {ActionIcon, TouchableIcon } from './components';
 import constants from './constants';
 
 const { width, height } = Dimensions.get('window');
@@ -84,7 +84,7 @@ export default class CircleMenu extends Component {
     Animated.timing(
       this.state.anim,
       {
-        duration: 100,
+        duration: 300,
         easing: Easing.inOut(Easing.circle),
         toValue: 1,
       }
@@ -94,15 +94,7 @@ export default class CircleMenu extends Component {
   }
 
   closeMenu = () => {
-    Animated.timing(
-      this.state.anim,
-      {
-        duration: 100,
-        toValue: 0,
-      }
-    ).start(() => {
-      this.setState({ isMenuOpen: false, active: false });
-    });
+    this.setState({ isMenuOpen: false, active: false });
   }
 
   animateButton() {
@@ -148,37 +140,7 @@ export default class CircleMenu extends Component {
 
     return (
       <View style={this.getActionButtonStyle()} >
-        <TouchableWithoutFeedback
-          onPress={() => {
-              this.openMenu();
-          }}
-        >
-          <Animated.View
-            ref={ref => { this.burger = ref; }}
-            style={[styles.buttonContainer, this.getActionButtonStyle(), styles.btn, {
-              backgroundColor: 'white',
-              width: this.state.anim.interpolate({
-                inputRange: [0, 1],
-                outputRange: [constants.BUTTON_SIZE, this.props.radius - this.props.itemSize]
-              }),
-              height: this.state.anim.interpolate({
-                inputRange: [0, 1],
-                outputRange: [constants.BUTTON_SIZE, this.props.radius - this.props.itemSize]
-              }),
-              borderRadius: this.state.anim.interpolate({
-                inputRange: [0, 1],
-                outputRange: [constants.BORDER_RADIUS, this.props.radius]
-              }),
-            }]}
-          >
-            <Icon
-              name="md-menu"
-              color="#0E1329"
-              size={20}
-            />
-
-          </Animated.View>
-        </TouchableWithoutFeedback>
+        <TouchableIcon icon="md-menu" color="#0E1329" onPress={this.openMenu}/>
       </View>
     );
   }
@@ -197,19 +159,18 @@ export default class CircleMenu extends Component {
         angle += increase;
         return (
 
-          <ActionButtonItem
+          <ActionIcon
             key={index}
             anim={this.state.anim}
             size={this.props.itemSize}
             radius={this.props.radius - this.props.itemSize}
             angle={btnAngle}
             buttonColor={item.color}
-            onPress={() => this.closeMenu()}
+            onPress={this.closeMenu}
             style={[styles.actionContainer, { position: 'absolute' }]}
             bgColor={this.props.bgColor}
-          >
-            <Icon name={item.name} color="white" size={20} />
-          </ActionButtonItem>
+            icon={item.name}
+          />
         );
       })
     );
@@ -218,10 +179,10 @@ export default class CircleMenu extends Component {
   render() {
     return (
       <View>
-        {this.renderActions()}
         <View pointerEvents="box-none" style={styles.actionContainer} >
           {this.renderButton()}
         </View>
+        {this.renderActions()}
       </View>
     );
   }

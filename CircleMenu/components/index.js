@@ -1,3 +1,3 @@
 export TouchableIcon from './TouchableIcon';
-export ActionButtonItem from './ActionButtonItem';
+export ActionIcon from './ActionIcon';
  

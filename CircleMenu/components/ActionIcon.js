@@ -10,6 +10,8 @@ import {
   Platform,
 } from 'react-native';
 
+import TouchableIcon from './TouchableIcon';
+
 export default class ActionButtonItem extends Component {
 
   constructor(props) {
@@ -33,9 +35,6 @@ export default class ActionButtonItem extends Component {
     const angle = this.props.angle + Math.PI * 2 * value;
     this.btn.setNativeProps({
       style: {
-        width: this.props.size,
-        height: this.props.size,
-        zIndex: 1,
         transform: [
           {
             translateY: this.radius * Math.sin(angle),
@@ -205,7 +204,7 @@ export default class ActionButtonItem extends Component {
     return (
       <View style={this.props.style} ref={(ref) => this.wraper = ref}>
         {this.renderCircle()}
-        <View style={{
+        <Animated.View style={{
           width: this.props.size,
           height: this.props.size,
           borderRadius: this.props.size / 2,
@@ -217,6 +216,12 @@ export default class ActionButtonItem extends Component {
             },
             {
               translateX: this.radius * Math.cos(this.props.angle),
+            },
+            {
+              scale: this.props.anim.interpolate({
+                inputRange: [0, 0.5, 1],
+                outputRange: [0, 1.1, 1],
+              })
             }, 
           ]
         }} />
@@ -255,7 +260,10 @@ export default class ActionButtonItem extends Component {
                   backgroundColor: this.props.buttonColor,
                 }]}
             >
-              {this.props.children}
+              <TouchableIcon
+                icon={this.props.icon} color="white" backgroundColor={this.props.buttonColor} buttonSize={this.props.size}
+                afterAnimation={this.startAnimation.bind(this)}
+              />
             </View>
           </TouchableOpacity>
         </Animated.View>
@@ -269,12 +277,12 @@ ActionButtonItem.propTypes = {
   angle: PropTypes.number,
   radius: PropTypes.number,
   buttonColor: PropTypes.string,
-  style: PropTypes.string,
+  style: View.propTypes.style,
   onPress: PropTypes.func,
   afterPress: PropTypes.func,
-  children: PropTypes.node.isRequired,
   duration: PropTypes.number,
   size: PropTypes.number,
+  icon: PropTypes.string.isRequired,
 };
 
 ActionButtonItem.defaultProps = {
