@@ -26,7 +26,6 @@ export default class App extends Component {
       name: 'md-navigate',
       color: '#ff6a00',
     },
-
   ]
 
   onPress = (index) => {
@@ -36,11 +35,7 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <CircleMenu buttonColor="rgba(231,76,60,1)" items={this.items} onPress={this.onPress} radius={150}>
-          {/* <CircleMenu.Item buttonColor='#9b59b6' onPress={() => console.log("notes tapped!")}>
-            <Icon name="android-create" style={styles.actionButtonIcon} />
-          </CircleMenu.Item> */}
-        </CircleMenu>
+        <CircleMenu buttonColor="rgba(231,76,60,1)" items={this.items} onPress={this.onPress} />
       </View>
     );
   }

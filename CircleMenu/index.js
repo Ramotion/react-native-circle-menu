@@ -80,7 +80,7 @@ export default class CircleMenu extends Component {
   }
 
   openMenu = () => {
-    this.setState({ active: true });
+    this.setState({ active: true, isMenuOpen: true });
     Animated.timing(
       this.state.anim,
       {
@@ -88,13 +88,18 @@ export default class CircleMenu extends Component {
         easing: Easing.inOut(Easing.circle),
         toValue: 1,
       }
-    ).start(() => {
-      this.setState({ isMenuOpen: true });
-    });
+    ).start(this.state.anim.setValue(0));
   }
 
   closeMenu = () => {
     this.setState({ isMenuOpen: false, active: false });
+    Animated.spring(
+      this.state.anim,
+      {
+        toValue: 0.5,
+        friction: 4
+      }
+    ).start(this.state.anim.setValue(0));
   }
 
   animateButton() {
@@ -125,23 +130,12 @@ export default class CircleMenu extends Component {
   renderButton() {
     if (this.state.isMenuOpen) {
       return (
-        <View
-          style={this.getActionButtonStyle()}
-        >
-          <TouchableIcon
-            onPress={this.closeMenu}
-            icon="md-close"
-            backgroundColor="#535a6b"
-            color="#0E1329"
-          />
-        </View>
+        <TouchableIcon onPress={this.closeMenu} icon="md-close" backgroundColor="#535a6b" color="#0E1329" />
       );
     }
 
     return (
-      <View style={this.getActionButtonStyle()} >
-        <TouchableIcon icon="md-menu" color="#0E1329" onPress={this.openMenu}/>
-      </View>
+      <TouchableIcon icon="md-menu" color="#0E1329" onPress={this.openMenu}/>
     );
   }
 
@@ -166,7 +160,10 @@ export default class CircleMenu extends Component {
             radius={this.props.radius - this.props.itemSize}
             angle={btnAngle}
             buttonColor={item.color}
-            onPress={this.closeMenu}
+            onPress={() => {
+              this.closeMenu();
+              this.props.onPress(index);
+            }}
             style={[styles.actionContainer, { position: 'absolute' }]}
             bgColor={this.props.bgColor}
             icon={item.name}
@@ -179,10 +176,21 @@ export default class CircleMenu extends Component {
   render() {
     return (
       <View>
-        <View pointerEvents="box-none" style={styles.actionContainer} >
-          {this.renderButton()}
-        </View>
         {this.renderActions()}
+        <View pointerEvents="box-none" style={styles.actionContainer} >
+          <Animated.View
+            style={[this.getActionButtonStyle(), {
+              transform: [{
+                rotate: this.state.anim.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: ['0deg', '360deg']
+                }),
+              }]
+            }]}
+          >
+            {this.renderButton()}
+          </Animated.View>
+        </View>
       </View>
     );
   }
@@ -191,41 +199,17 @@ export default class CircleMenu extends Component {
 CircleMenu.propTypes = {
   active: PropTypes.bool,
   bgColor: PropTypes.string,
-  buttonColor: PropTypes.string,
-  buttonTextColor: PropTypes.string,
-  size: PropTypes.number,
   itemSize: PropTypes.number,
-  autoInactive: PropTypes.bool,
-  onPress: PropTypes.func,
-  onOverlayPress: PropTypes.func,
-  backdrop: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.object,
-  ]),
-  startDegree: PropTypes.number,
-  endDegree: PropTypes.number,
   radius: PropTypes.number,
-  children: PropTypes.node,
-  position: PropTypes.oneOf(['left', 'center', 'right']),
+  onPress: PropTypes.func,
 };
 
 CircleMenu.defaultProps = {
   active: false,
   bgColor: '#0E1329',
-  buttonColor: 'rgba(0,0,0,1)',
-  buttonTextColor: 'rgba(255,255,255,1)',
-  position: 'center',
-  outRangeScale: 1,
-  autoInactive: true,
-  onPress: () => {},
-  onOverlayPress: () => {},
-  backdrop: false,
-  degrees: 0,
-  size: 63,
   itemSize: 50,
-  radius: 100,
-  btnOutRange: 'rgba(0,0,0,1)',
-  btnOutRangeTxt: 'rgba(255,255,255,1)',
+  radius: 150,
+  onPress: () => {},
 };
 
 const styles = StyleSheet.create({
