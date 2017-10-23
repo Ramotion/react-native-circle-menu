@@ -49,9 +49,7 @@ export default class CircleMenu extends Component {
     super(props);
 
     this.state = {
-      circleColor: 'red',
       startDeg: 0,
-
       active: props.active,
       anim: new Animated.Value(props.active ? 1 : 0),
       isMenuOpen: false,
@@ -175,7 +173,7 @@ export default class CircleMenu extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.actionContainer}>
         {this.renderActions()}
         <View pointerEvents="box-none" style={styles.actionContainer} >
           <Animated.View
