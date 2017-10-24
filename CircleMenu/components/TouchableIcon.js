@@ -1,5 +1,5 @@
 import React, { Component, PropTypes, } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Animated } from 'react-native';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Animated, Platform } from 'react-native';
 import { Ionicons as Icon } from '@expo/vector-icons';
 
 class TouchableIcon extends Component {
@@ -26,8 +26,8 @@ class TouchableIcon extends Component {
           Animated.timing(
             this.state.animation,
             {
-              duration,
-              toValue: 1,
+              duration: Platform.select({ ios: duration, android: 0 }),
+              toValue: Platform.select({ ios: 1, android: 0 }),
             }
           ).start(() => {
             this.state.animation.setValue(0);
