@@ -178,6 +178,7 @@ export default class CircleMenu extends Component {
         <View pointerEvents="box-none" style={styles.actionContainer} >
           <Animated.View
             style={[this.getActionButtonStyle(), {
+              top: 5,
               transform: [{
                 rotate: this.state.anim.interpolate({
                   inputRange: [0, 1],

@@ -23,16 +23,20 @@ class TouchableIcon extends Component {
         }}
         onPress={() => {
           onPress();
-          Animated.timing(
-            this.state.animation,
-            {
-              duration: Platform.select({ ios: duration, android: 0 }),
-              toValue: Platform.select({ ios: 1, android: 0 }),
-            }
-          ).start(() => {
-            this.state.animation.setValue(0);
+          if (Platform.OS === 'ios') {
+            Animated.timing(
+              this.state.animation,
+              {
+                duration,
+                toValue: 1,
+              }
+            ).start(() => {
+              this.state.animation.setValue(0);
+              afterAnimation();
+            });
+          } else {
             afterAnimation();
-          });
+          }
         }}
       >
         <Animated.View

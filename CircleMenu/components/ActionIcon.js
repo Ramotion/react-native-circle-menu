@@ -72,8 +72,8 @@ export default class ActionIcon extends Component {
         style={{
           display: this.state.isActive ? 'flex' : 'none',
           position: 'absolute',
-          top:  -this.props.radius / 2 + this.props.size,
-          height: outRadius,
+          top:  -this.props.radius / 2,
+          height: outRadius + this.props.size * 2,
           justifyContent: 'center',
           alignItems: 'center',
           transform: [{
@@ -86,9 +86,10 @@ export default class ActionIcon extends Component {
         }}
       >
         <Progress.Circle
-          size={this.props.radius + this.state.circleWidth * 2 }
+          size={this.props.radius + 10 + this.state.circleWidth * 2}
           color={this.props.buttonColor}
-          borderWidth={0}
+          borderWidth={5}
+          borderColor={this.props.bgColor}
           progress={this.state.progress}
           thickness={this.state.circleWidth}
           strokeCap="round"
@@ -112,7 +113,7 @@ export default class ActionIcon extends Component {
         top: -(this.props.radius + this.props.size) / 2 - this.props.size,
         justifyContent: 'center',
         alignItems: 'center',
-        overflow: 'visible', 
+        overflow: 'visible',
       }],
     });
 
@@ -168,21 +169,15 @@ export default class ActionIcon extends Component {
             height: this.props.size,
             zIndex: 100,
             opacity: this.closeAnimation.interpolate({
-              inputRange: [0, 0.1],
+              inputRange: [0, 0.01],
               outputRange: [1, 0],
             }),
             transform: [
               {
-                translateY: this.closeAnimation.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [yTranslateFrom, yTranslateTo],
-                }),
+                translateY: yTranslateFrom,
               },
               {
-                translateX: this.closeAnimation.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [xTranslateFrom, xTranslateTo],
-                }),
+                translateX: xTranslateFrom,
               },
               {
                 scale: this.props.anim.interpolate({
@@ -242,7 +237,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     paddingTop: 2,
-    backgroundColor: 'red',
     position: 'absolute',
   },
   circle: {
