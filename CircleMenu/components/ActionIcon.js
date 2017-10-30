@@ -68,7 +68,6 @@ export default class ActionIcon extends Component {
 
     return (
       <Animated.View
-        ref={(ref) => this.circle = ref}
         style={{
           display: this.state.isActive ? 'flex' : 'none',
           position: 'absolute',
@@ -86,10 +85,10 @@ export default class ActionIcon extends Component {
         }}
       >
         <Progress.Circle
-          size={this.props.radius + 10 + this.state.circleWidth * 2}
+          size={this.props.radius + 6 + this.state.circleWidth * 2}
           color={this.props.buttonColor}
-          borderWidth={5}
-          borderColor={this.props.bgColor}
+          borderWidth={3}
+          borderColor="rgba(0, 0, 0, 0)"
           progress={this.state.progress}
           thickness={this.state.circleWidth}
           strokeCap="round"
@@ -104,11 +103,13 @@ export default class ActionIcon extends Component {
       isActive: true,
     });
 
+    const left = (this.props.size - 50) / 2 + 5;
+
     this.wraper.setNativeProps({
       style: [this.props.style, {
         zIndex: 1000,
         width: this.props.radius + this.props.size * 4,
-        left: -(this.props.radius + this.props.size) / 2 - 5 - this.props.size,
+        left: -(this.props.radius + this.props.size) / 2 - left - this.props.size,
         height: this.props.radius + this.props.size * 4,
         top: -(this.props.radius + this.props.size) / 2 - this.props.size,
         justifyContent: 'center',

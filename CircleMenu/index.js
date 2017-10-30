@@ -172,13 +172,14 @@ export default class CircleMenu extends Component {
   }
 
   render() {
+    const top = (this.props.itemSize - 50) / 2 + 5;
     return (
       <View style={styles.actionContainer}>
         {this.renderActions()}
         <View pointerEvents="box-none" style={styles.actionContainer} >
           <Animated.View
             style={[this.getActionButtonStyle(), {
-              top: 5,
+              top: top,
               transform: [{
                 rotate: this.state.anim.interpolate({
                   inputRange: [0, 1],
@@ -206,7 +207,7 @@ CircleMenu.propTypes = {
 CircleMenu.defaultProps = {
   active: false,
   bgColor: '#0E1329',
-  itemSize: 50,
+  itemSize: 60,
   radius: 150,
   onPress: () => {},
 };
