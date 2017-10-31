@@ -66,6 +66,8 @@ export default class ActionIcon extends Component {
     const radius = this.props.radius + this.props.size;
     const outRadius = radius * 2;
 
+    const border = (this.props.size - 50) / 2 + 5;
+
     return (
       <Animated.View
         style={{
@@ -85,9 +87,9 @@ export default class ActionIcon extends Component {
         }}
       >
         <Progress.Circle
-          size={this.props.radius + 6 + this.state.circleWidth * 2}
+          size={this.props.radius + (border * 2) + this.state.circleWidth * 2}
           color={this.props.buttonColor}
-          borderWidth={3}
+          borderWidth={border}
           borderColor="rgba(0, 0, 0, 0)"
           progress={this.state.progress}
           thickness={this.state.circleWidth}

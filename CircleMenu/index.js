@@ -100,31 +100,6 @@ export default class CircleMenu extends Component {
     ).start(this.state.anim.setValue(0));
   }
 
-  animateButton() {
-    if (this.state.active) {
-      this.reset();
-      return;
-    }
-
-    Animated.spring(this.state.anim, {
-      toValue: 1,
-      duration: 250,
-    }).start();
-
-    this.setState({ active: true });
-  }
-
-  reset() {
-    Animated.spring(this.state.anim, {
-      toValue: 0,
-      duration: 250,
-    }).start();
-
-    setTimeout(() => {
-      this.setState({ active: false });
-    }, 250);
-  }
-
   renderButton() {
     if (this.state.isMenuOpen) {
       return (
