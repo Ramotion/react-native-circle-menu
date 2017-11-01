@@ -78,12 +78,12 @@ export default class CircleMenu extends Component {
   }
 
   openMenu = () => {
+    this.state.anim.setValue(0);
     this.setState({ active: true, isMenuOpen: true });
     Animated.timing(
       this.state.anim,
       {
         duration: 300,
-        easing: Easing.inOut(Easing.circle),
         toValue: 1,
       }
     ).start(this.state.anim.setValue(0));
@@ -124,8 +124,8 @@ export default class CircleMenu extends Component {
       this.props.items.map((item, index) => {
         const btnAngle = angle;
         angle += increase;
-        return (
 
+        return (
           <ActionIcon
             key={index}
             anim={this.state.anim}

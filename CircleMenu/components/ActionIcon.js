@@ -184,8 +184,8 @@ export default class ActionIcon extends Component {
               },
               {
                 scale: this.props.anim.interpolate({
-                  inputRange: [0, 0.75, 1],
-                  outputRange: [0, 1.2, 1],
+                  inputRange: [0, 0.3, 0.75, 1],
+                  outputRange: [0.1, 0.1, 1.2, 1],
                 })
               }, 
             ]
