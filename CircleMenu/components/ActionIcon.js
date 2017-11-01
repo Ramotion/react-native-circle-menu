@@ -87,12 +87,12 @@ export default class ActionIcon extends Component {
         }}
       >
         <Progress.Circle
-          size={this.props.radius + (border * 2) + this.state.circleWidth * 2}
+          size={this.props.radius + (border * 2) + 4 + this.state.circleWidth * 2}
           color={this.props.buttonColor}
           borderWidth={border}
           borderColor="rgba(0, 0, 0, 0)"
           progress={this.state.progress}
-          thickness={this.state.circleWidth}
+          thickness={this.state.circleWidth + 2}
           strokeCap="round"
           animated={false}
         />
@@ -204,7 +204,7 @@ export default class ActionIcon extends Component {
               }]}
             >
               <TouchableIcon
-                icon={this.props.icon} color="white" backgroundColor={this.props.buttonColor} buttonSize={this.props.size}
+                icon={this.props.icon} color="white" backgroundColor={this.props.buttonColor} buttonSize={this.props.size - 2}
                 afterAnimation={this.startAnimation.bind(this)}
               />
             </View>
