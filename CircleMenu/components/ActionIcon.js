@@ -87,12 +87,12 @@ export default class ActionIcon extends Component {
         }}
       >
         <Progress.Circle
-          size={this.props.radius + (border * 2) + 4 + this.state.circleWidth * 2}
+          size={this.props.radius + (border * 2) + 2 + this.state.circleWidth * 2}
           color={this.props.buttonColor}
           borderWidth={border}
           borderColor="rgba(0, 0, 0, 0)"
           progress={this.state.progress}
-          thickness={this.state.circleWidth + 2}
+          thickness={this.state.circleWidth + 4}
           strokeCap="round"
           animated={false}
         />
