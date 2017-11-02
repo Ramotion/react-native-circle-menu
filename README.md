@@ -48,7 +48,7 @@ render() {
 | Name | Description | Type | Required | Default Value |
 | :--- | :----- | :--- | :---: | :---: |
 | active | Menu is active | Boolean |  | `false` |
-| bgColor | The background color of the menu | String |  | '#0E1329' |
+| bgColor | The background color of the menu | String |  | `#0E1329` |
 | itemSize | The size of menu elements | Number |  | 60 |
 | radius | The circle radius | Number |  | 150 |
 | onPress | The function that called when pressed on menu item | Function |  |  |
