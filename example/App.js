@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
+import { CircleMenu } from 'react-native-circle-menu';
 import { StyleSheet, View } from 'react-native';
 import { Ionicons as Icon } from '@expo/vector-icons';
-
-import CircleMenu from './CircleMenu';
 
 export default class App extends Component {
   items = [
