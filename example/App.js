@@ -1,55 +1,54 @@
-import React, { Component } from 'react';
-import { CircleMenu } from 'react-native-circle-menu';
-import { StyleSheet, View } from 'react-native';
-import { Ionicons as Icon } from '@expo/vector-icons';
+import React, {Component} from 'react'
+import CircleMenu from '../src'
+import {View} from 'react-native'
 
-export default class App extends Component {
+const styles = {
+  container: {
+    alignItems: 'center',
+    backgroundColor: '#0E1329',
+    flex: 1,
+    justifyContent: 'center'
+  },
+  actionButtonIcon: {
+    color: '#FFF',
+    fontSize: 20,
+    height: 22
+  }
+};
+
+export default class extends Component {
   items = [
     {
       name: 'md-home',
-      color: '#298cff',
+      color: '#298CFF',
     },
     {
       name: 'md-search',
-      color: '#30a400',
+      color: '#30A400',
     },
     {
       name: 'md-time',
-      color: '#ff4b32',
+      color: '#FF4B32',
     },
     {
       name: 'md-settings',
-      color: '#8a39ff',
+      color: '#8A39FF',
     },
     {
       name: 'md-navigate',
-      color: '#ff6a00',
+      color: '#FF6A00',
     },
-  ]
+  ];
 
-  onPress = (index) => {
-    console.warn(`${this.items[index].name} icon pressed!`);
-  }
+  onPress = index => console.warn(`${this.items[index].name} icon pressed!`);
 
   render() {
-    return (
-      <View style={styles.container}>
-        <CircleMenu buttonColor="rgba(231,76,60,1)" items={this.items} onPress={this.onPress} />
-      </View>
-    );
+    return <View style={styles.container}>
+      <CircleMenu
+        bgColor="#E74C3C"
+        items={this.items}
+        onPress={this.onPress}
+      />
+    </View>
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0E1329',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  actionButtonIcon: {
-    fontSize: 20,
-    height: 22,
-    color: 'white',
-  }
-});

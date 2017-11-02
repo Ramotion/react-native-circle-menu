@@ -8,28 +8,28 @@
 ## Usage
 
 ```javascript
-import { CircleMenu } from 'react-native-circle-menu';
+import CircleMenu from 'react-native-circle-menu';
 
 items = [
   {
     name: 'md-home',
-    color: '#298cff',
+    color: '#298CFF',
   },
   {
     name: 'md-search',
-    color: '#30a400',
+    color: '#30A400',
   },
   {
     name: 'md-time',
-    color: '#ff4b32',
+    color: '#FF4B32',
   },
   {
     name: 'md-settings',
-    color: '#8a39ff',
+    color: '#8A39FF',
   },
   {
     name: 'md-navigate',
-    color: '#ff6a00',
+    color: '#FF6A00',
   },
 ]
 
@@ -37,11 +37,11 @@ onPress = (index) => {
   console.warn(`${this.items[index].name} icon pressed!`);
 }
 
-render() {
-  return (
-    <CircleMenu buttonColor="rgba(231,76,60,1)" items={this.items} onPress={this.onPress} />
-  )
-}
+render = () => <CircleMenu
+  bgColor="#E74C3C"
+  items={this.items}
+  onPress={this.onPress}
+/>
 ```
 
 ## Props
