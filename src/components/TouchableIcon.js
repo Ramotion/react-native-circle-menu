@@ -13,7 +13,11 @@ class TouchableIcon extends Component {
   }
   render() {
     const { icon, color, buttonSize, iconSize, backgroundColor, onPress, duration, afterAnimation } = this.props;
+    let size = buttonSize;
 
+    if (Platform.OS === 'ios') {
+      size += 1;
+    }
     return (
       <TouchableWithoutFeedback
         style={{
@@ -73,9 +77,12 @@ class TouchableIcon extends Component {
         >
           <View style={[styles.container, {
             backgroundColor,
-            width: buttonSize,
-            height: buttonSize,
+            width: size,
+            height: size,
             borderRadius: buttonSize,
+            paddingTop: Platform.OS === 'ios' ? 4 : 0,
+            paddingLeft: Platform.OS === 'ios' ? 1 : 0,
+            borderColor: 'transparent'
           }]}>
             <Icon
               name={icon}
