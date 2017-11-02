@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "sdkVersion": "21.0.0",
+    "name": "circle menu",
+    "version": "0.1.0",
+    "ios": {
+      "bundleIdentifier": "com.ramotion.circle-menu"
+    }
+  }
+}

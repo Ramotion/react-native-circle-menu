@@ -1,0 +1,18 @@
+{
+  "name": "react-native-circle-menu",
+  "version": "0.1.0",
+  "private": true,
+  "description": "React Native component for creating animated, circular menu",
+  "main": "index.js",
+  "keywords": [
+    "react",
+    "react-native",
+    "react-component",
+    "circle",
+    "chart",
+    "menu"
+  ],
+  "dependencies": {
+    "react-native-progress": "^3.4.0"
+  }
+}
