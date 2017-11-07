@@ -1,4 +1,4 @@
-const BUTTON_SIZE = 40;
+const BUTTON_SIZE = 50;
 
 export default {
   BORDER_RADIUS: BUTTON_SIZE / 2,

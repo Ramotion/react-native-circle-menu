@@ -4,6 +4,8 @@ import {View, Animated, TouchableOpacity} from 'react-native'
 import * as Progress from 'react-native-progress'
 import TouchableIcon from './TouchableIcon'
 
+import constants from '../constants'
+
 const styles = {
   actionButton: {
     alignItems: 'center',
@@ -83,10 +85,6 @@ export default class extends Component {
       this.move(value);
       this.setState({progress: value});
     });
-
-    this.closeAnimation.addListener(({value}) => this.setState({
-      circleWidth: this.props.size + (this.props.size * value / 5)
-    }))
   }
 
   move(value) {
@@ -105,7 +103,7 @@ export default class extends Component {
   startAnimation = () => {
     this.setState({isActive: true});
 
-    const left = (this.props.size - 50) / 2 + 5;
+    const left = (this.props.size - constants.BUTTON_SIZE - 10) / 2 + 5;
     const size = this.props.radius + this.props.size * 4;
     const position = -(this.props.radius + this.props.size) / 2;
 
@@ -185,7 +183,7 @@ export default class extends Component {
         style={[{
           height: this.props.size,
           opacity: this.closeAnimation.interpolate({
-            inputRange: [0, .01],
+            inputRange: [0, 0.1],
             outputRange: [1, 0]
           }),
           transform: [
@@ -216,6 +214,7 @@ export default class extends Component {
               backgroundColor={this.props.buttonColor}
               buttonSize={this.props.size - 2}
               color="#FFF"
+              iconSize={27}
               icon={this.props.icon}
             />
           </View>

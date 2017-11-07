@@ -15,30 +15,6 @@ const styles = {
     backgroundColor: 'transparent',
     justifyContent: 'center'
   },
-  btn: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#444',
-    shadowOffset: {
-      height: 1,
-      width: 0
-    },
-    shadowOpacity: .3,
-    shadowRadius: 1
-  },
-  btnText: {
-    backgroundColor: 'transparent',
-    fontSize: 24,
-    marginTop: -4,
-    position: 'relative'
-  },
-  buttonContainer: {
-    alignItems: 'center',
-    borderRadius: constants.BORDER_RADIUS,
-    height: constants.BUTTON_SIZE,
-    justifyContent: 'center',
-    width: constants.BUTTON_SIZE
-  }
 };
 
 export default class extends Component {
@@ -55,7 +31,7 @@ export default class extends Component {
     bgColor: '#0E1329',
     itemSize: 60,
     onPress() {},
-    radius: 150
+    radius: 170
   };
 
   constructor(props) {
@@ -151,14 +127,15 @@ export default class extends Component {
         style={styles.actionContainer}
       >
         <Animated.View style={[styles.actionBarItem, {
-          height: constants.BUTTON_SIZE,
-          top: (this.props.itemSize - 50) / 2 + 5,
+          top: (this.props.itemSize - constants.BUTTON_SIZE - 10) / 2 + 5,
+          left: 0,
           transform: [{
             rotate: this.state.animation.interpolate({
               inputRange: [0, 1],
               outputRange: ['0deg', '360deg']
             })
           }],
+          height: constants.BUTTON_SIZE,
           width: constants.BUTTON_SIZE
         }]}>
           {this.renderButton()}

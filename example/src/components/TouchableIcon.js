@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react'
 import {View, TouchableWithoutFeedback, Animated, Platform} from 'react-native'
 import {Ionicons as Icon} from '@expo/vector-icons'
 
+import constants from '../constants'
+
 const styles = {
   container: {
     alignItems: 'center',
@@ -24,9 +26,9 @@ export default class extends Component {
   static defaultProps = {
     afterAnimation() {},
     backgroundColor: '#FFF',
-    buttonSize: 40,
+    buttonSize: constants.BUTTON_SIZE,
     duration: 250,
-    iconSize: 20,
+    iconSize: 25,
     onPress() {}
   };
 
@@ -108,7 +110,7 @@ export default class extends Component {
           borderRadius: buttonSize,
           height: size,
           width: size,
-          paddingTop: Platform.OS === 'ios' ? 4 : 0,
+          paddingTop: Platform.OS === 'ios' ? 2 : 0,
           paddingLeft: Platform.OS === 'ios' ? 1 : 0,
           borderColor: 'transparent'
         }]}>
