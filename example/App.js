@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import CircleMenu from '../src'
+import CircleMenu from './src'
 import {View} from 'react-native'
 
 const styles = {
@@ -45,7 +45,7 @@ export default class extends Component {
   render() {
     return <View style={styles.container}>
       <CircleMenu
-        bgColor="#E74C3C"
+        bgColor="#0E1329"
         items={this.items}
         onPress={this.onPress}
       />
