@@ -107,12 +107,12 @@ export default class extends Component {
       }]}>
         <View style={[styles.container, {
           backgroundColor,
+          borderColor: 'transparent',
           borderRadius: buttonSize,
           height: size,
-          width: size,
           paddingTop: Platform.OS === 'ios' ? 2 : 0,
           paddingLeft: Platform.OS === 'ios' ? 1 : 0,
-          borderColor: 'transparent'
+          width: size
         }]}>
           <Icon
             color={color || '#FFF'}

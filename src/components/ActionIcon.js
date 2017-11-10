@@ -183,12 +183,12 @@ export default class extends Component {
         style={[{
           height: this.props.size,
           opacity: this.closeAnimation.interpolate({
-            inputRange: [0, 0.1],
+            inputRange: [0, .1],
             outputRange: [1, 0]
           }),
           transform: [
             {scale: this.props.animation.interpolate({
-              inputRange: [0, 0.3, .75, 1],
+              inputRange: [0, .3, .75, 1],
               outputRange: [.1, .1, 1.2, 1]
             })},
             {translateX: this.radius * Math.cos(this.props.angle)},

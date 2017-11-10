@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import CircleMenu from './src'
 import {View} from 'react-native'
+import CircleMenu from 'react-native-circle-menu'
 
 const styles = {
   container: {
