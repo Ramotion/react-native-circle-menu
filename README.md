@@ -90,8 +90,10 @@ See [LICENSE](./LICENSE) for details.
 <br>
 
 # Get the Showroom App for iOS to give it a try
-Try this UI component and more like this in our iOS app. Contact us if interested.
+Try this UI component and more like this in our mobild app. Contact us if interested.
 
+<a href="https://play.google.com/store/apps/details?id=com.ramotion.showroom" >
+<img src="https://github.com/ramotion/react-native-circle-menu/raw/master/goolge_play@2x.png" width="104" height="34"></a>
 <a href="https://itunes.apple.com/app/apple-store/id1182360240?pt=550053&ct=react-native-circle-menu&mt=8" >
 <img src="https://github.com/ramotion/gliding-collection/raw/master/app_store@2x.png" width="117" height="34"></a>
 <a href="https://ramotion.com/?utm_source=gthb&utm_medium=special&utm_campaign=react-native-circle-menu-contact-us/#Get_in_Touch">
