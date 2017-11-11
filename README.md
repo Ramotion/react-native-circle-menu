@@ -1,4 +1,25 @@
+![header](./header.png)
+![preview](./preview.gif)
+
 # React Native Circle Menu
+[![Twitter](https://img.shields.io/badge/Twitter-@Ramotion-blue.svg?style=flat)](http://twitter.com/Ramotion)
+
+# Check this library on other platforms:
+<a href="https://github.com/Ramotion/circle-menu"> 
+<img src="https://github.com/ramotion/navigation-stack/raw/master/Swift@2x.png" width="178" height="81"></a>
+<a href="https://github.com/Ramotion/circle-menu-android"> 
+<img src="https://github.com/ramotion/navigation-stack/raw/master/Android_Java@2x.png" width="178" height="81"></a>
+
+**Looking for developers for your project?**<br>
+This project is maintained by Ramotion, Inc. We specialize in the designing and coding of custom UI for Mobile Apps and Websites.
+
+<a href="https://ramotion.com/?utm_source=gthb&utm_medium=special&utm_campaign=circle-menu-contact-us/#Get_in_Touch">
+<img src="https://github.com/ramotion/gliding-collection/raw/master/contact_our_team@2x.png" width="187" height="34"></a> <br>
+
+
+The [iPhone mockup](https://store.ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=react-native-circle-menu) available [here](https://store.ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=react-native-circle-menu).
+
+The [Android mockup](https://store.ramotion.com/product/samsung-galaxy-s8-mockups?utm_source=gthb&utm_medium=special&utm_campaign=react-native-circle-menu) available [here](https://store.ramotion.com/product/samsung-galaxy-s8-mockups?utm_source=gthb&utm_medium=special&utm_campaign=react-native-circle-menu-android).
 
 ## Features
 
@@ -61,3 +82,23 @@ class Example extends Component {
 | itemSize | The size of menu elements | Number |  | `60` |
 | radius | The circle radius | Number |  | `150` |
 | onPress | The function that called when pressed on menu item | Function |  |  |
+
+## Licence
+
+Circle menu is released under the MIT license.
+See [LICENSE](./LICENSE) for details.
+<br>
+
+# Get the Showroom App for iOS to give it a try
+Try this UI component and more like this in our iOS app. Contact us if interested.
+
+<a href="https://itunes.apple.com/app/apple-store/id1182360240?pt=550053&ct=react-native-circle-menu&mt=8" >
+<img src="https://github.com/ramotion/gliding-collection/raw/master/app_store@2x.png" width="117" height="34"></a>
+<a href="https://ramotion.com/?utm_source=gthb&utm_medium=special&utm_campaign=react-native-circle-menu-contact-us/#Get_in_Touch">
+<img src="https://github.com/ramotion/gliding-collection/raw/master/contact_our_team@2x.png" width="187" height="34"></a>
+<br>
+<br>
+
+Follow us for the latest updates<br>
+[![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=https://github.com/ramotion/circle-menu)
+[![Twitter Follow](https://img.shields.io/twitter/follow/ramotion.svg?style=social)](https://twitter.com/ramotion)
