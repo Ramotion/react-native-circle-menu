@@ -28,7 +28,7 @@ The [Android mockup](https://store.ramotion.com/product/samsung-galaxy-s8-mockup
 
 ## Installation
 
-`npm install --save react-native-circle-menu`
+`npm install --save @ramotion/react-native-circle-menu`
 
 ## Usage
 
@@ -36,7 +36,7 @@ Look it in folder `./example`
 
 ```javascript
 import React, {Component} from 'react'
-import CircleMenu from 'react-native-circle-menu'
+import CircleMenu from '@ramotion/react-native-circle-menu'
 
 class Example extends Component {
     items = [
