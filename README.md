@@ -2,6 +2,7 @@
 ![preview](./preview.gif)
 
 # React Native Circle Menu
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/21bf2f9562fc49a6aa9f9e4b7b3111a9)](https://www.codacy.com/app/juri-v/react-native-circle-menu?utm_source=github.com&utm_medium=referral&utm_content=Ramotion/react-native-circle-menu&utm_campaign=badger)
 [![Twitter](https://img.shields.io/badge/Twitter-@Ramotion-blue.svg?style=flat)](http://twitter.com/Ramotion)
 
 # Check this library on other platforms:
