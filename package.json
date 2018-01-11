@@ -11,10 +11,12 @@
     "chart",
     "menu"
   ],
+  "peerDependencies": {
+    "react": "16.0.0-alpha.12",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-21.0.0.tar.gz"
+  },
   "dependencies": {
     "@expo/vector-icons": "^6.1.0",
-    "react": "^16.0.0",
-    "react-native": "^0.48.4",
     "react-native-progress": "^3.4.0"
   },
   "repository": {
