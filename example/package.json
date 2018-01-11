@@ -19,7 +19,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@ramotion/react-native-circle-menu": "https://github.com/openGeeksLab/react-native-circle-menu.git",
+    "@ramotion/react-native-circle-menu": "https://github.com/Ramotion/react-native-circle-menu.git",
     "expo": "^21.0.0",
     "react": "16.0.0-alpha.12",
     "react-native": "https://github.com/expo/react-native/archive/sdk-21.0.0.tar.gz"
